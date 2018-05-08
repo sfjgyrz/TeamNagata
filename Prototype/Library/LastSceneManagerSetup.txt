@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Nagata.unity
+- path: Assets/Nakano.unity
   isLoaded: 1
   isActive: 1
