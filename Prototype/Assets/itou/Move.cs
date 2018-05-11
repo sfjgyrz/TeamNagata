@@ -25,11 +25,17 @@ public class Move : MonoBehaviour
             timer += Time.deltaTime;
         }
 
+        if (timer < 0.5 && count >= 4)
+        {
+            Destroy(gameObject);
+        }
+
         //壁に当たってから0.1秒たったら時間を計ることをやめて、タイマーをリセット
-        if (timer > 0.1)
+        if (timer > 0.5)
         {
             flag = false;
             timer = 0;
+            count = 0;
         }
     }
 
@@ -40,6 +46,8 @@ public class Move : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, 90, 0));
             flag = true;
+            count++;
+            Debug.Log("起動１");
         }
     }
 
@@ -49,6 +57,8 @@ public class Move : MonoBehaviour
         if (other.gameObject.tag == "Wall" && flag == true && timer > 0.01)
         {
             transform.Rotate(new Vector3(0, 180, 0));
+            count++;
+            Debug.Log("起動２");
         }
         //if (other.gameObject.tag == "Wall" && flag == true && timer < 0.5)
         //{
