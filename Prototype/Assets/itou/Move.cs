@@ -32,7 +32,7 @@ public class Move : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        Debug.Log(count);
+       
         //行き止まりになったら消滅
         if (count >= 4)
         {
@@ -77,4 +77,3 @@ public class Move : MonoBehaviour
         }
     }
 }
-
