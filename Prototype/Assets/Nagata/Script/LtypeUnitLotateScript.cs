@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LtypeUnitLotateScript : MonoBehaviour {
     Animator LUanimator;
-    public static float Unitlotatespeed;
+    Vector3 pos;
+    public static float Unitlotatespeed=1.0f;
     bool firstlotateflag = true;//アニメーション１の起動が初回であるかどうかのフラグ
     bool loteteflag1 = false;//アニメーション１が起動されるとtrueになる処理。
     bool loteteflag2 = false;//アニメーション2が起動されるとtrueになる処理。
@@ -48,6 +49,7 @@ public class LtypeUnitLotateScript : MonoBehaviour {
 
     void Start()
     {
+        pos = transform.position;
         LUanim = this.gameObject.GetComponent<Animation>();
         LUanimator = GetComponent<Animator>();
     }

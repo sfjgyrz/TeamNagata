@@ -80,6 +80,7 @@
 -define:UNITY_2017
 -define:PLATFORM_ARCH_64
 -define:UNITY_64
+-define:UNITY_ANALYTICS
 -define:ENABLE_AUDIO
 -define:ENABLE_CACHING
 -define:ENABLE_CLOTH
@@ -168,6 +169,8 @@ Assets/Nagata/Script/CameraShotRay.cs
 Assets/Nagata/Script/FlagManager.cs
 Assets/Nagata/Script/LtypeUnitLotateScript.cs
 Assets/Nagata/Script/StraightUnitScript.cs
+Assets/Nakano/GoalScript.cs
+Assets/Nakano/TrainScript.cs
 -r:C:\Users\nagata\Desktop\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll
 -r:C:\Users\nagata\Desktop\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll
 -r:C:\Users\nagata\Desktop\Editor\Data\Mono\lib\mono\unity\UnityScript.dll

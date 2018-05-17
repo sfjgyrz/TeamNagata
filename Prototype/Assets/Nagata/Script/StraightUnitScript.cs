@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class StraightUnitScript : MonoBehaviour {
     Animator SUanimator;
+    Vector3 PelsonaPos;
+    float FirstAgree = 180;
+    float lotetyme = 0;
+    int flagint = 0;
+    Quaternion Lote1= Quaternion.Euler(0, 180, 0);
     bool firstlotateflag = true;//アニメーション１の起動が初回であるかどうかのフラグ
-    bool loteteflag1= false;//アニメーション１が起動されるとtrueになる処理。
+    bool loteteflag1 = false;//アニメーション１が起動されるとtrueになる処理。
     bool loteteflag2 = false;//アニメーション2が起動されるとtrueになる処理。
     bool loteteflag3 = false;//アニメーション3が起動されるとtrueになる処理。
     bool loteteflag4 = false;//アニメーション4が起動されるとtrueになる処理。
     bool SUAccessflag;//マウスがStrightUnitの位置に接触している場合。
+    bool islotateflag = false;
     Animation SUanim;
     // Use this for initialization
     IEnumerator Loteteflag1Diley()//左クリックが押された１秒後にloteteflag1がtrueになる処理
     {
+       
         yield return new WaitForSeconds(LtypeUnitLotateScript.Unitlotatespeed);  //10秒待つ
+
         loteteflag1 = true;
 
     }
@@ -45,43 +53,52 @@ public class StraightUnitScript : MonoBehaviour {
 
     }
 
+    
     void Start () {
-		SUanim= this.gameObject.GetComponent<Animation>();
+        PelsonaPos = this.transform.position;
+        SUanim = this.gameObject.GetComponent<Animation>();
         SUanimator = GetComponent<Animator>();
     }
-	
+	public void Lote1Contlole()
+    {
+        islotateflag = true;
+        if (lotetyme < 1)
+        {
+            lotetyme += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Lote1, lotetyme);
+            islotateflag = false;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
+
+        switch (flagint)
+        {
+            case 1:
+                Lote1Contlole();
+                break;
+        }
+        
         if (Input.GetMouseButtonDown(0) && SUAccessflag == true)//一本道のコライダーにマウスがいるとき、マウスの左クリックが押された場合
         {
           
-            if (loteteflag1 == false && loteteflag2 == false && loteteflag3 == false && loteteflag4 == false&&firstlotateflag==true)
+            if (flagint==0&&islotateflag==false)
             {
-                SUanimator.SetInteger("SUControllint", 1);
-                StartCoroutine("Loteteflag1Diley");
-                firstlotateflag = false;
+                flagint = 1;
             }
-            if (loteteflag1 == true && loteteflag2 == false && loteteflag3 == false && loteteflag4 == false)
+            if (flagint==1&&islotateflag==false)
             {
-                SUanimator.SetInteger("SUControllint", 2);
-                StartCoroutine("Loteteflag2Diley");
+                flagint = 2;
             }
-            if (loteteflag1 == true && loteteflag2 == true && loteteflag3 == false && loteteflag4 == false)
+            if (flagint==2&&islotateflag==false)
             {
-                SUanimator.SetInteger("SUControllint", 3);
-                StartCoroutine("Loteteflag3Diley");
+                flagint = 3;
             }
-            if (loteteflag1 == true && loteteflag2 == true && loteteflag3 == true && loteteflag4 == false)
+            if (flagint==3&&islotateflag==false)
             {
-                SUanimator.SetInteger("SUControllint", 4);
-                StartCoroutine("Loteteflag4Diley");
+                flagint = 4;
             }
-            if (loteteflag1 == true && loteteflag2 == true && loteteflag3 == true && loteteflag4 == true)
-            {
-                SUanimator.SetInteger("SUControllint", 0);
-                StartCoroutine("LastTurn");
-            }
-
         }
 	}
     public void AccessSU()//マウスが一本道のコライダーに入った時
