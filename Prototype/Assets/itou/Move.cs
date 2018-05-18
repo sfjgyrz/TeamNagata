@@ -54,6 +54,7 @@ public class Move : MonoBehaviour
         //壁に当たったら向いている方向から90度回転(右を向く)し、タイマーを起動
         if (other.gameObject.tag == "Wall" && collisionFlag == false)
         {
+            Debug.Log("90度回転");
             transform.Rotate(new Vector3(0, 90, 0));
             boxCollider.size = boxColliderSize; //センサーを大きく伸ばす
             collisionFlag = true;
@@ -62,6 +63,7 @@ public class Move : MonoBehaviour
 
         if (other.gameObject.tag == "Stage")
         {
+            //Debug.Log("どこかのステージに侵入");
             GameObject gameObj = other.gameObject;
             transform.parent = gameObj.transform; //侵入したステージの子オブジェクトに
         }
@@ -72,7 +74,9 @@ public class Move : MonoBehaviour
         //一度壁に当たってからまだ壁に当たっていた場合180回転（左を向く）
         if (other.gameObject.tag == "Wall" && collisionFlag == true)
         {
+            Debug.Log("180度回転");
             transform.Rotate(new Vector3(0, 180, 0));
+            timer = 0;
             count++;
         }
     }
