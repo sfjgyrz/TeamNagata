@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Nagata/NagataSene.unity
-=======
-- path: Assets/itou/TestScene.unity
->>>>>>> origin/itou
   isLoaded: 1
   isActive: 1

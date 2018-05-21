@@ -6,7 +6,8 @@ public class CameraShotRay : MonoBehaviour {
 
 // Use this for initialization
 void Start () {
-        GetComponent<StraightUnitScript>();
+
+        Debug.Log(gameObject.tag);
     }
 	
 	// Update is called once per frame
